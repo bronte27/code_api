@@ -1,0 +1,54 @@
+{
+    "name": "app",
+    "type": "api",
+    "description": "API implementation Angular site to manage event photography",
+    "keywords": ["framework","micro","api","router"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nick Veldhoven",
+            "email": "nveldhoven@gmail.com"
+        }
+       
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "pimple/pimple": "^3.0",
+        "psr/http-message": "^1.0",
+        "nikic/fast-route": "^1.0",
+        "container-interop/container-interop": "^1.2",
+        "psr/container": "^1.0",
+        "dyorg/slim-token-authentication": "^0.3.3",
+        "phpmailer/phpmailer": "~5.2.23",
+        "Html2Text/Html2Text": "~4.1.0",
+        "firebase/php-jwt": "^5.0",
+        "slim/slim": "^3.9.3"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^2.5",
+        "phpunit/phpunit": "^4.0"
+    },
+    "provide": {
+        "psr/http-message-implementation": "1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": "app",
+            "Firebase\\JWT\\": "src\\JWT",
+            "code\\": "app",
+            "group\\": "app",
+            "event\\": "app",
+            "gallery\\": "app",
+            "notes\\": "app"
+        }
+    },
+    "minimum-stability": "dev",
+    "scripts": {
+        "test": [
+            "@phpunit",
+            "@phpcs"
+        ],
+        "phpunit": "php vendor/bin/phpunit",
+        "phpcs": "php vendor/bin/phpcs"
+    }
+}
