@@ -55,8 +55,8 @@ $authError = function($request, $response, TokenAuthentication $tokenAuth) {
 
 // Add token authentication middleware
 $app->add(new TokenAuthentication([
-    'path' =>   '/api',
-    'passthrough' => '/api/auth',
+    'path' =>   '/',
+    'passthrough' => '/auth',
     'authenticator' => $authenticator,
     'error' => $authError
 ]));
@@ -66,6 +66,7 @@ $app->add(new TokenAuthentication([
 
 //Enable CORS
 $app->options('/{name:.+}', function($request, $response, $args){
+    echo "cors";
     return $response->withHeader('Access-Control-Allow-Origin', '*')
         ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
         ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -111,10 +112,10 @@ $app->get('/', function($request, $response){
     return $response;
 });
 
-$app->post('/api/registration', function($request, $response){
+$app->post('/registration', function($request, $response){
     $output = [];
     
-    //require_once 'code/Code.php';
+
     $output = Code::processRegistration(json_decode((string)$request->getBody(),true),$request->getAttribute ('codeType'), $request->getAttribute ('code'));
     $response = $response->withJson(array('data'=>array('HTML'=>$output)), 200);
 

@@ -55,7 +55,8 @@ class ErrorHandler {
                     ->withStatus(405)
                     ->withHeader('Allow', implode(', ', $methods))
                     ->withHeader('Content-Type', 'application/json')
-                    ->withJson(['error'=> ['msg'=>'Invalid request method']]);
+//                    ->withJson(['error'=> ['msg'=>'Invalid request method']]);
+                    ->withJson(['error'=> ['msg'=>'Invalid request method ('.$request->getUri()->getPath().')'], 'verbose_msg'=>debug_backtrace()]);
             };
         };
     }

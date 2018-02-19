@@ -255,7 +255,7 @@ class EmailHandler
 			   trigger_error(self::$mErrorMessage, E_USER_NOTICE);
 			   return false;
 			}	
-			ErrorHandler::SetHandler();
+			//ErrorHandler::SetHandler();
 		}
 		elseif (self::$mEchoEmail) 
 			echo "{$toEmailAddress} {$toName} <br/> {$subject} <br/> {$messageHTML}<br/>";		
