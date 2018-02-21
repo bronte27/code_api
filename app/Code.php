@@ -94,7 +94,7 @@ class Code {
                         ':day_wed'=>($data['children'][$i]['days']['wed'])?'X':'', 
                         ':day_thu'=>($data['children'][$i]['days']['thu'])?'X':'', 
                         ':day_fri'=>($data['children'][$i]['days']['fri'])?'X':'', 
-                        ':special_friends'=>'', //$data['children'][$i]['Special'], 
+                        ':special_friends'=>($data['children'][$i]['friends'])?'X':'', 
                         ':siblings'=>($data['children'][$i]['siblings'])?'X':'', 
                         ':info'=>(empty($data['children'][$i]['info']))?'':$data['children'][$i]['info'],
                         ':sibling_list'=>str_replace($data['children'][$i]['firstName'].' '.$data['children'][$i]['surname'].'; ', '', $siblingList));

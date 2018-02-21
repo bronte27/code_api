@@ -113,15 +113,13 @@ class AuthCode
             $code = strtolower($data['code']);
         //if (array_key_exists('password',$data)) {
         //    $code = $data['password'];
-            $sql = 'SELECT event_code, event_status_id, event_active, e.customer_id, c.customer_siblings as siblings, c.customer_friends as friends FROM event e, customer c WHERE event_code = :code';
+            $sql = 'SELECT event_code, event_status_id, event_active, e.customer_id, c.customer_siblings as siblings, c.customer_friends as friends FROM event e, customer c WHERE  e.customer_id = c.customer_id AND event_code = :code';
             $params = array(':code'=>$code);
             $rs_code = DatabaseHandler::GetRow($sql, $params);
 
             if (!empty($rs_code)) {
                 $codeType = "child_reg";
 
-                $siblings = (($rs_code['siblings']==1)?true:false);
-                $friends = (($rs_code['friends']==1)?true:false);
                 $sql = 'SELECT group_id as id, group_name as name FROM groups WHERE customer_id = :customer_id and group_active = 1';
                 $params = array('customer_id' => $rs_code['customer_id']);
                 $groups = DatabaseHandler::GetAll($sql,$params);
@@ -157,8 +155,8 @@ class AuthCode
                             'galleryURL' => $galleryURL,    // URL for redirect action
                             'groups' => $groups,
                             'codeType' => $codeType,
-                            'siblings' => (($rs_code['siblings']==1)?true:false),
-                            'friends' => (($rs_code['friends']==1)?true:false)
+                            'siblings' => (($rs_code['siblings']==0)?true:false),
+                            'friends' => (($rs_code['friends']==0)?true:false)
                     ];
                 
                     return $payload;
