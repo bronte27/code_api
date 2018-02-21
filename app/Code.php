@@ -15,7 +15,7 @@ class Code {
     private static $eventCode;
 
    public static function processRegistration($data, $codeType, $code){
-        self::$eventCode = $code;
+        self::$eventCode = strtolower($code);
         
 
        // if ($data['data']['mailingList'])
@@ -81,7 +81,7 @@ class Code {
         $groupName = DatabaseHandler::GetOne($sqlGroup,$param);
         
         $params = array(':event_id'=>$eventData['event_id'], 
-                        ':event_name'=>$eventData['event_name'], 
+                        ':event_name'=>self::$eventCode, 
                         ':contact_name'=>$data['contact']['contactName'], 
                         ':phone_number'=>$data['contact']['phoneNumber'], 
                         ':email'=>strtolower($data['contact']['emails']['email']), 

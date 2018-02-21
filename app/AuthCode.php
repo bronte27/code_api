@@ -110,7 +110,7 @@ class AuthCode
 
 
         if (array_key_exists('code',$data)) {
-            $code = $data['code'];
+            $code = strtolower($data['code']);
         //if (array_key_exists('password',$data)) {
         //    $code = $data['password'];
             $sql = 'SELECT event_code, event_status_id, event_active, e.customer_id, c.customer_siblings as siblings, c.customer_friends as friends FROM event e, customer c WHERE event_code = :code';
