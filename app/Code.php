@@ -84,7 +84,7 @@ class Code {
                         ':event_name'=>self::$eventCode, 
                         ':contact_name'=>$data['contact']['contactName'], 
                         ':phone_number'=>$data['contact']['phoneNumber'], 
-                        ':email'=>strtolower($data['contact']['emails']['email']), 
+                        ':email'=>strtolower(trim($data['contact']['emails']['email'])), 
                         ':child_first_name'=>$data['children'][$i]['firstName'], 
                         ':child_surname'=>$data['children'][$i]['surname'], 
                         ':group_id'=>$data['children'][$i]['group'], 
